@@ -27,6 +27,7 @@ export class ScheduleService {
         "assignerName":assignerName
       }
     ]
+    console.log(studioScheduleSlotList);
     let url = "http://13.232.30.248:8081/schedule";
     return this.http.post(url,{date,studioName,
       studioScheduleSlotList
@@ -35,7 +36,7 @@ export class ScheduleService {
   }))
   }
 
-  edit(studioScheduleId,date,studioName,startTime,endTime,faculty,assingerName){
+  edit(studioScheduleId,date,studioName,startTime,endTime,faculty,assignerName){
    let url = "http://13.232.30.248:8081/schedule";
     let studioScheduleSlotList= 
     [
@@ -44,7 +45,7 @@ export class ScheduleService {
         "startTime":startTime,
         "endTime":endTime,
         "faculty":faculty,
-        "assignerName":assingerName
+        "assignerName":assignerName
       }
     ]
     return this.http.put(url,{studioScheduleId,date,studioName,studioScheduleSlotList}).pipe(map(response=>{

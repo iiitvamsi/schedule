@@ -8,72 +8,115 @@
       <label for="pwd">Date:</label>
       <input type="text" class="form-control" name="date" [(ngModel)]="model.date" placeholder="Enter Date" name="pswd">
     </div>
-    <button type="submit" (click)="search()" class="btn btn-primary">Search</button>
+    <button type="submit" (click)="search()" class="btn btn-primary">Search</button> &nbsp;
+    <button type="submit" (click)="dispalyForm()" class="btn btn-primary">Create Schedule</button>
   </form>
 </div>
 
-<div *ngIf="!createSchedule" >
-  <table>
-    <th>Schedule Id</th>
-    <th>Date</th>
-    <th>studioName</th>
-    <th>Assigner Name</th>
-    <th>Faculty</th>
-    <th>start Time</th>
-    <th>End Time</th>
-
+<div class="container" style="margin-top:30px">
+ <table class="table">
+  <thead>
     <tr>
-      <td>{{searchData.studioScheduleId}}</td>
+      <th scope="col">Date</th>
+      <th scope="col">Studio Name</th>
+      <th scope="col">Assigner Name</th>
+      <th scope="col">Faculty</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
       <td>{{searchData.date}}</td>
       <td>{{searchData.studioName}}</td>
       <td>{{searchData.studioScheduleSlotList[0].assignerName}}</td>
       <td>{{searchData.studioScheduleSlotList[0].faculty}}</td>
       <td>{{searchData.studioScheduleSlotList[0].startTime}}</td>
       <td>{{searchData.studioScheduleSlotList[0].endTime}}</td>
-      <button (click)="edit()">EDIT</button>
+      <button class="btn btn-primary btn-md" style="display:block; margin:auto;margin-top:5px;margin-bottom:5px;" (click)="edit()">EDIT</button>
     </tr>
-  </table>
- {{editResponse}}
-  
+  </tbody>
+</table>
  
 </div>
 
 
+<div class="container" *ngIf="editResponse"> 
+  <form>
+    <div class="form-group">
+      <label for="email">Studio Name:</label>
+      <input type="text" class="form-control" name="studio" [(ngModel)]="model.studio" placeholder="Enter Studio">
+    </div>
 
-<div *ngIf="createSchedule"> 
+    <div class="form-group">
+      <label for="pwd">Date:</label>
+      <input type="text" class="form-control" name="date" [(ngModel)]="model.date" placeholder="Enter Date" >
+    </div>
+
+    <div class="form-group">
+        <label for="pwd">startTime</label>
+        <input type="text" class="form-control" name="startTime" [(ngModel)]="model.startTime" placeholder="Enter Start Time">
+      </div>
+
+      <div class="form-group">
+          <label for="pwd">End Time</label>
+          <input type="text" class="form-control" name="endTime" [(ngModel)]="model.endTime" placeholder="Enter End Time" >
+        </div>
+
+        <div class="form-group">
+            <label for="pwd">Faculty</label>
+            <input type="text" class="form-control" name="faculty" [(ngModel)]="model.faculty" placeholder="Enter Faculty Name">
+          </div>
+
+          <div class="form-group">
+              <label for="pwd">Assigner Name</label>
+              <input type="text" class="form-control" name="assignerName" [(ngModel)]="model.assignerName" placeholder="Enter Assigner Name">
+            </div>
+
+
+    <button type="submit" (click)="update()" class="btn btn-primary">UPDATE</button>
+  </form>
+
+<div *ngIf="editResponse!=true && editResponse!=false">{{editResponse}}</div> 
+</div>
+
+
+
+<div class="container" *ngIf="createSchedule"> 
     <form>
       <div class="form-group">
         <label for="email">Studio Name:</label>
-        <input type="text" class="form-control" name="studioName" [(ngModel)]="model.studioName" placeholder="Enter Studio" name="email">
+        <input type="text" class="form-control" name="studio" [(ngModel)]="model.studio" placeholder="Enter Studio">
       </div>
 
       <div class="form-group">
         <label for="pwd">Date:</label>
-        <input type="text" class="form-control" name="date" [(ngModel)]="model.date" placeholder="Enter Date" name="pswd">
+        <input type="text" class="form-control" name="date" [(ngModel)]="model.date" placeholder="Enter Date" >
       </div>
 
       <div class="form-group">
           <label for="pwd">startTime</label>
-          <input type="text" class="form-control" name="startTime" [(ngModel)]="model.startTime" placeholder="Enter Date" name="pswd">
+          <input type="text" class="form-control" name="startTime" [(ngModel)]="model.startTime" placeholder="Enter Start Time" name="pswd">
         </div>
 
         <div class="form-group">
             <label for="pwd">End Time</label>
-            <input type="text" class="form-control" name="endTime" [(ngModel)]="model.endTime" placeholder="Enter Date" name="pswd">
+            <input type="text" class="form-control" name="endTime" [(ngModel)]="model.endTime" placeholder="Enter End Time" name="pswd">
           </div>
 
           <div class="form-group">
               <label for="pwd">Faculty</label>
-              <input type="text" class="form-control" name="facult" [(ngModel)]="model.faculty" placeholder="Enter Date" name="pswd">
+              <input type="text" class="form-control" name="facult" [(ngModel)]="model.faculty" placeholder="Enter Faculty Name" name="pswd">
             </div>
 
             <div class="form-group">
                 <label for="pwd">Assigne Name</label>
-                <input type="text" class="form-control" name="assignerName" [(ngModel)]="model.assignerName" placeholder="Enter Date" name="pswd">
+                <input type="text" class="form-control" name="assignerName" [(ngModel)]="model.assignerName" placeholder="Enter Assigner Name" name="pswd">
               </div>
 
 
-      <button type="submit" (click)="create()" class="btn btn-primary">Search</button>
+      <button type="submit" (click)="create()" class="btn btn-primary">CREATE</button>
     </form>
     {{postResponse}}
 </div>
