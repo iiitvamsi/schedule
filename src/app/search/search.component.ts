@@ -1,5 +1,5 @@
 import { ScheduleService } from './../schedule.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
@@ -16,18 +16,16 @@ export class SearchComponent implements OnInit {
   displayTable:boolean = false;
   createSchedule:boolean = false;
   editResponse:boolean = false;
+  startTime:any;
 
-  constructor(private scheduleService:ScheduleService) { }
+  constructor(private scheduleService:ScheduleService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
 
   search(){
-    console.log(this.model.studio,this.model.date);
     this.scheduleService.search(this.model.studio,this.model.date).subscribe(data=>{
       this.searchData = data;
-      console.log(this.searchData);
-     
       if(this.searchData == null){
         this.createSchedule = true;
       }
@@ -45,7 +43,16 @@ export class SearchComponent implements OnInit {
   }
 
   edit(){
-    console.log(this.searchData)
+    // this.cdRef.detectChanges();
+    this.editResponse = true;
+    this.model.startTime = this.searchData.studioScheduleSlotList[0].startTime;
+    this.model.endTime = this.searchData.studioScheduleSlotList[0].endTime;
+    this.model.assignerName = this.searchData.studioScheduleSlotList[0].assignerName;
+    this.model.faculty = this.searchData.studioScheduleSlotList[0].faculty;
+    // this.cdRef.detectChanges();
+  }
+
+  update(){
     this.scheduleService.edit(this.searchData.studioScheduleId,this.searchData.date,
       this.searchData.studioName,this.searchData.studioScheduleSlotList[0].startTime,
       this.searchData.studioScheduleSlotList[0].endTime,this.searchData.studioScheduleSlotList[0].faculty,

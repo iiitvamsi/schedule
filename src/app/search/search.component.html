@@ -48,6 +48,50 @@
 </div>
 
 
+<div class="container" *ngIf="editResponse"> 
+  <form>
+    <div class="form-group">
+      <label for="email">Studio Name:</label>
+      <input type="text" class="form-control" name="studio" [(ngModel)]="model.studio" placeholder="Enter Studio">
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="pwd">Date:</label>
+      <input type="text" class="form-control" name="date" [(ngModel)]="model.date" placeholder="Enter Date" name="pswd">
+    </div> -->
+
+    <div class="form-group">
+      <label for="pwd">Date:</label>
+      <input type="text" class="form-control" name="date" [(ngModel)]="model.date" placeholder="Enter Date" >
+    </div>
+
+    <div class="form-group">
+        <label for="pwd">startTime</label>
+        <input type="text" class="form-control" name="startTime" [(ngModel)]="model.startTime" placeholder="Enter Date">
+      </div>
+
+      <div class="form-group">
+          <label for="pwd">End Time</label>
+          <input type="text" class="form-control" name="endTime" [(ngModel)]="model.endTime" placeholder="Enter Date" >
+        </div>
+
+        <div class="form-group">
+            <label for="pwd">Faculty</label>
+            <input type="text" class="form-control" name="faculty" [(ngModel)]="model.faculty" placeholder="Enter Date">
+          </div>
+
+          <div class="form-group">
+              <label for="pwd">Assigne Name</label>
+              <input type="text" class="form-control" name="assignerName" [(ngModel)]="model.assignerName" placeholder="Enter Date">
+            </div>
+
+
+    <button type="submit" (click)="update()" class="btn btn-primary">UPDATE</button>
+  </form>
+  {{postResponse}}
+</div>
+
+
 
 <div class="container" *ngIf="createSchedule"> 
     <form>
