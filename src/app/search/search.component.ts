@@ -23,20 +23,20 @@ export class SearchComponent implements OnInit {
   }
 
   search(){
-    // console.log(this.model.studio,this.model.date);
     this.scheduleService.search(this.model.studio,this.model.date).subscribe(data=>{
       this.searchData = data;
       console.log(this.searchData);
      
       if(this.searchData == null){
         this.createSchedule = true;
+      }else{
+        this.createSchedule = false;
       }
     })
   }
 
 
   create(){
-    // console.log(this.model.date,this.model.studioName,this.model.startTime,this.model.endTime,this.model.faculty,this.model.assignerName)
     this.scheduleService.create(this.model.date,this.model.studioName,this.model.startTime,
       this.model.endTime,this.model.faculty,this.model.assignerName).subscribe(data=>{
         this.postResponse = data.responseMsg;
@@ -49,17 +49,8 @@ export class SearchComponent implements OnInit {
       this.searchData.studioName,this.searchData.studioScheduleSlotList[0].startTime,
       this.searchData.studioScheduleSlotList[0].endTime,this.searchData.studioScheduleSlotList[0].faculty,
       this.searchData.studioScheduleSlotList[0].assingerName).subscribe(data=>{
-        this.editResponse = data.responseMsg
-        console.log(this.editResponse);
+        this.editResponse = data.responseMsg;
       })
   }
-
-  // edit(id,date,studioName,startTime,endTime,faculty,assingerName){
-  //   console.log(this.searchData)
-  //   console.log(id,date,studioName,startTime,endTime,faculty,assingerName)
-  //   this.scheduleService.edit(id,date,studioName,startTime,endTime,faculty,assingerName).subscribe(data=>{
-  //     console.log(data);
-  //   })
-  // }
 
 }
